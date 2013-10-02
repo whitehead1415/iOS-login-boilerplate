@@ -53,7 +53,7 @@ MockAuthenticationManagerDelegate *delegate;
     id netCommunicator = [OCMockObject mockForClass:[NetCommunicator class]];
     authMan.currentSelector = @selector(sessionWasFetched:);
     [[[mockAuthenticationManager stub] andReturn:netCommunicator] netCommunicatorCreator];
-    [[netCommunicator expect] fetchDataFromURL:[OCMArg any]];
+    [[netCommunicator expect] fetchDataFromURL:[OCMArg any] httpMethod:[OCMArg any]];
     [mockAuthenticationManager fetchingDataSucceeded:responseData];
     [authMan fetchSessionWithEmail:@"testEmail" password:@"testPassword"];
     XCTAssertNoThrow([netCommunicator verify], @"fetchDataFromURL should be called");
@@ -103,7 +103,7 @@ MockAuthenticationManagerDelegate *delegate;
     authMan.delegate = delegate;
     [authMan fetchingDataSucceeded:responseData];
     NSString *printableError = [delegate.receivedError.userInfo objectForKey:@"printableError"];
-    XCTAssertEqualObjects(@"Unable to parse server response. Please submit bug request.", printableError, @"The error should have printable text in userInfo");
+    XCTAssertEqualObjects(@"Unable to parse server response. Please do something!", printableError, @"The error should have printable text in userInfo");
 }
 
 - (void)testFetchingDataDidFailedWithErrorBecauseOfErrorSentFromServer {

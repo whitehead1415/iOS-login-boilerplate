@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,12 +28,14 @@
 }
 
 - (IBAction)login:(id)sender {
+    msgLabel.text = @"";
     if (emailField.text.length == 0) {
         msgLabel.text = @"Please enter an email";
-    }else if (passwordField.text.length == 0) {
+    }else if (passwordField.text.length == 0){
         msgLabel.text = @"Please enter your password";
     }else {
         AuthenticationManager *authMan = [self initializeAuthenticationManager];
+        authMan.currentSelector = @selector(sessionWasFetched:);
         [authMan fetchSessionWithEmail:emailField.text password:passwordField.text];
     }
 }
@@ -46,18 +49,29 @@
 }
 
 - (AuthenticationManager *)initializeAuthenticationManager {
-    return [[AuthenticationManager alloc] init];
+    AuthenticationManager *authMan = [[AuthenticationManager alloc] init];
+    authMan.delegate = self;
+
+    return authMan;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    [passwordField becomeFirstResponder];
-//    [passwordField setReturnKeyType:UIReturnKeyGo];
+    if (emailField.text.length != 0 && passwordField.text.length != 0) {
+        [self login:nil];
+        return YES;
+    }
+    
+    if (textField == emailField) {
+        [passwordField becomeFirstResponder];
+    }else {
+        [emailField becomeFirstResponder];
+    }
+    
     return YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
-
 
 @end

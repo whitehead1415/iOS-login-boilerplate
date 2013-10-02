@@ -62,20 +62,33 @@ LoginViewController *controller;
     XCTAssertTrue(containsAction, @"There should be a login action connected to the button");
 }
 
-- (void)testLoginActionFailsWhenEmailFieldIsBlack {
+- (void)testLoginActionFailsWhenEmailIsEmpty {
     [controller login:nil];
-    XCTAssertEqualObjects(controller.msgLabel.text, @"Please enter an email", @"there should be an error msg when email is empty");
+    XCTAssertEqualObjects(controller.msgLabel.text, @"Please enter an email", @"an error should show when email is blank");
 }
 
-- (void)testLoginActionFailsWhenPasswordFieldIsBlank {
+- (void)testLoginActionFailsWhenPasswordIsEmpty {
     controller.emailField.text = @"foo";
     [controller login:nil];
-    XCTAssertEqualObjects(controller.msgLabel.text, @"Please enter your password", @"there should be an error msg when email is empty");
+    XCTAssertEqualObjects(controller.msgLabel.text, @"Please enter your password", @"an error should show when password is blank");
+}
+
+- (void)testMsgLabelIsClearedBeforeLoginAction {
+    controller.msgLabel.text = @"foo";
+    controller.emailField.text = @"bar";
+    controller.passwordField.text = @"baz";
+    [controller login:nil];
+    XCTAssertEqualObjects(controller.msgLabel.text, @"", @"The msgLabel should be reset");
 }
 
 - (void)testInitializeAuthenticationManager {
     AuthenticationManager *authMan = [controller initializeAuthenticationManager];
     XCTAssertTrue([authMan isKindOfClass:[AuthenticationManager class]], @"AuthenticationManager should be initialized");
+}
+
+- (void)testInitializeAuthenticationManagerSetsLoginViewControllerAsDelegate {
+    AuthenticationManager *authMan = [controller initializeAuthenticationManager];
+    XCTAssertTrue([authMan.delegate isKindOfClass:[LoginViewController class]], @"Should set delegate as LoginViewController");
 }
 
 - (void)testLoginActionFailsWhenCredentialsAreInvalid {
@@ -84,6 +97,7 @@ LoginViewController *controller;
     id mockController = [OCMockObject partialMockForObject:controller];
     id authMan = [OCMockObject mockForClass:[AuthenticationManager class]];
     [[[mockController stub] andReturn:authMan] initializeAuthenticationManager];
+    [[authMan expect] setCurrentSelector:@selector(sessionWasFetched:)];
     [[authMan expect] fetchSessionWithEmail:[OCMArg any] password:[OCMArg any]];
     [controller login:nil];
     NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:@"Invalid email or password", @"printableError", nil];
@@ -100,6 +114,7 @@ LoginViewController *controller;
     id authMan = [OCMockObject mockForClass:[AuthenticationManager class]];
     [[[mockController stub] andReturn:authMan] initializeAuthenticationManager];
     [[authMan expect] fetchSessionWithEmail:[OCMArg any] password:[OCMArg any]];
+    [[authMan expect] setCurrentSelector:@selector(sessionWasFetched:)];
     [mockController login:nil];
     Session *session = [[Session alloc] initWithEmail:@"userEmail" userId:@"userId" tokenId:@"tokenId"];
     [mockController didReceiveSession:session message:@"success"];
@@ -108,8 +123,37 @@ LoginViewController *controller;
 }
 
 
-//- (void)testKeyboardDisapears {
-//    
-//}
+- (void)testTouchingOutSideOfKeyboardHidesKeyboard{
+    id mockView = [OCMockObject partialMockForObject:controller.view];
+    controller.view = mockView;
+    [[mockView expect] endEditing:YES];
+    [controller touchesBegan:nil withEvent:nil];
+    XCTAssertNoThrow([mockView verify], @"The keyboard should be hidden on a touch event");
+}
+
+- (void)testKeyboardReturnKeyGoesToPasswordFieldWhenPasswordFieldIsEmpty {
+    id passwordField = [OCMockObject partialMockForObject:controller.passwordField];
+    [[passwordField expect] becomeFirstResponder];
+    controller.passwordField = passwordField;
+    [controller textFieldShouldReturn:controller.emailField];
+    XCTAssertNoThrow([passwordField verify], @"The passwordField should becomeFirstResponder");
+}
+
+- (void)testKeyboardReturnKeyGoesToEmailFieldIfEmailFieldIsEmpty {
+    id emailField = [OCMockObject partialMockForObject:controller.emailField];
+    [[emailField expect] becomeFirstResponder];
+    controller.emailField = emailField;
+    [controller textFieldShouldReturn:controller.passwordField];
+    XCTAssertNoThrow([emailField verify], @"The emailField should becomeFirstResponder");
+}
+
+- (void)testKeboardReturnKeyIsConnectedToLoginActionWhenFieldsAreNotEmpty {
+    id mockController = [OCMockObject partialMockForObject:controller];
+    [[mockController expect] login:[OCMArg any]];
+    controller.emailField.text = @"foo";
+    controller.passwordField.text = @"bar";
+    [controller textFieldShouldReturn:controller.passwordField];
+    XCTAssertNoThrow([mockController verify], @"The login action should be called when fields are not empty");
+}
 
 @end

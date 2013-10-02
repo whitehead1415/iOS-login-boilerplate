@@ -33,7 +33,6 @@
 		24686B2217F296ED00400634 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24686B2117F296ED00400634 /* libOCMock.a */; };
 		24CAD31E17FB7AFD003D2A5D /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */; };
 		24CAD32117FB7B0C003D2A5D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD32017FB7B0C003D2A5D /* LoginViewController.m */; };
-		24CAD32217FB7B0C003D2A5D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD32017FB7B0C003D2A5D /* LoginViewController.m */; };
 		24F665B917F68D0B00405CF9 /* NetCommunicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F665B817F68D0B00405CF9 /* NetCommunicatorTests.m */; };
 		24F665C117F78A5A00405CF9 /* MockNetCommunicatorDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F665C017F78A5A00405CF9 /* MockNetCommunicatorDelegate.m */; };
 		24F665C917F7E47B00405CF9 /* MockAuthenticationManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F665C817F7E47B00405CF9 /* MockAuthenticationManagerDelegate.m */; };
@@ -196,10 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				2400027F17F274F900097802 /* Supporting Files */,
-				2400028E17F2754200097802 /* AuthenticationManagerTests.m */,
-				2400029817F27DD600097802 /* SessionTests.m */,
-				24F665B817F68D0B00405CF9 /* NetCommunicatorTests.m */,
 				24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */,
+				2400028E17F2754200097802 /* AuthenticationManagerTests.m */,
+				24F665B817F68D0B00405CF9 /* NetCommunicatorTests.m */,
+				2400029817F27DD600097802 /* SessionTests.m */,
 				24F665BF17F78A5A00405CF9 /* MockNetCommunicatorDelegate.h */,
 				24F665C017F78A5A00405CF9 /* MockNetCommunicatorDelegate.m */,
 				24F665C717F7E47B00405CF9 /* MockAuthenticationManagerDelegate.h */,
@@ -371,7 +370,6 @@
 				2400029917F27DD600097802 /* SessionTests.m in Sources */,
 				24CAD31E17FB7AFD003D2A5D /* LoginViewControllerTests.m in Sources */,
 				24F665C117F78A5A00405CF9 /* MockNetCommunicatorDelegate.m in Sources */,
-				24CAD32217FB7B0C003D2A5D /* LoginViewController.m in Sources */,
 				2400028F17F2754200097802 /* AuthenticationManagerTests.m in Sources */,
 				2406543017FBC7920082E06A /* HomeViewController.m in Sources */,
 				2406543417FBC9C30082E06A /* SignUpViewController.m in Sources */,

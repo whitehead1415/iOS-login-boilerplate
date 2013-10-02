@@ -18,8 +18,9 @@
     return [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (void)fetchDataFromURL:(NSURL *)url{
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+- (void)fetchDataFromURL:(NSURL *)url httpMethod:(NSString *)httpMethod{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:httpMethod];
     receivedData = [NSMutableData alloc];
     NSURLConnection *connection = [self newAsynchronousRequest:request];
     [connection start];

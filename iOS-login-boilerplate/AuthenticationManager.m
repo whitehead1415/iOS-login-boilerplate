@@ -10,7 +10,7 @@
 #import "NetCommunicator.h"
 #import "AuthenticationManagerDelegate.h"
 
-#define SERVER_URL @"http://test/v1"
+#define SERVER_URL @"http://localhost:3000/v1"
 #define LOGIN_ROUTE @"sessions"
 //figure out how to send post get or update with nsurl
 
@@ -29,7 +29,7 @@
 - (void)fetchSessionWithEmail:(NSString *)email password:(NSString *)password {
     NSURL *fetchURL = [NSURL URLWithString:
                        [NSString stringWithFormat:@"%@/%@?email=%@&password=%@",SERVER_URL,LOGIN_ROUTE,email,password]];
-    [[self netCommunicatorCreator] fetchDataFromURL:fetchURL];
+    [[self netCommunicatorCreator] fetchDataFromURL:fetchURL httpMethod:@"POST"];
 }
 
 - (void)fetchingDataFailed:(NSError *)error {
@@ -51,7 +51,7 @@
     NSError *error = nil;
     NSDictionary *deserialisedSession = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     if (error) {
-        NSDictionary *newUserInfo = [[NSDictionary alloc] initWithObjectsAndKeys:@"Unable to parse server response. Please submit bug request.", @"printableError", nil];
+        NSDictionary *newUserInfo = [[NSDictionary alloc] initWithObjectsAndKeys:@"Unable to parse server response. Please do something!", @"printableError", nil];
         NSError *newError = [[NSError alloc] initWithDomain:@"com.custom.domain" code:500 userInfo:newUserInfo];
         [delegate fetchingDataFailedWithError:newError];
     }else {
@@ -67,7 +67,6 @@
             NSString *msg = [deserialisedSession objectForKey:@"msg"];
             Session *session = [[Session alloc] initWithEmail:email userId:userId tokenId:tokenId];
             [delegate didReceiveSession:session message:msg];
-
         }
     }
 }

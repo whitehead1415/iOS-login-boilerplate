@@ -45,7 +45,7 @@ MockNetCommunicatorDelegate *delegate;
     id partialMock = [OCMockObject partialMockForObject:netCommunicator];
     [[[partialMock stub] andReturn:dummyUrlConnection] newAsynchronousRequest:[OCMArg any]];
     netCommunicator.delegate = delegate;
-    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"]];
+    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"] httpMethod:@"POST"];
     
     int statusCode = 200;
     id responseMock = [OCMockObject mockForClass:[NSHTTPURLResponse class]];
@@ -64,7 +64,7 @@ MockNetCommunicatorDelegate *delegate;
     id partialMock = [OCMockObject partialMockForObject:netCommunicator];
     [[[partialMock stub] andReturn:dummyUrlConnection] newAsynchronousRequest:[OCMArg any]];
     netCommunicator.delegate = delegate;
-    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"]];
+    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"] httpMethod:@"POST"];
     NSError *fakeError = [[NSError alloc] initWithDomain:@"fakeDomain" code:400 userInfo:nil];
     [netCommunicator connection:dummyUrlConnection didFailWithError:fakeError];
     XCTAssertEqualObjects(delegate.error, fakeError, @"The error should pass through to the netCommunicatorDelegate");

@@ -13,9 +13,9 @@
    @private NSMutableData *receivedData;
 }
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, retain) id delegate;
 
-- (void)fetchDataFromURL:(NSURL *)url;
+- (void)fetchDataFromURL:(NSURL *)url httpMethod:(NSString *)httpMethod;
 - (NSURLConnection *)newAsynchronousRequest:(NSURLRequest *)request;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
