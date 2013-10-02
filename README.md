@@ -14,6 +14,5 @@ Reusable login/registration code
 - stay logged in (recreate session behind the scenes)
 - Loading spinner/animation
 - Custom segues
-- Hiding the keyboard
-- Smarter keyboard return key
-- include a mocked nodejs server with pre-canned responses
+- Add to node js dummy server responses
+- UI tweaks
