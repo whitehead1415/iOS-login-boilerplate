@@ -41,6 +41,14 @@
 }
 
 - (void)didReceiveSession:(Session *)session message:(NSString *)message {
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:emailField.text accessGroup:nil];
+    [keychainItem resetKeychainItem];
+    [keychainItem setObject:emailField.text forKey:(__bridge id)(kSecAttrAccount)];
+    [keychainItem setObject:passwordField.text forKey:(__bridge id)(kSecValueData)];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:session.userId forKey:@"userId"];
+    [defaults setObject:session.tokenId forKey:@"tokenId"];
+    [defaults setObject:session.email forKey:@"email"];
     [self performSegueWithIdentifier:@"homeSegue" sender:self];
 }
 

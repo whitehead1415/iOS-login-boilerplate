@@ -90,7 +90,8 @@ LoginViewController *controller;
     AuthenticationManager *authMan = [controller initializeAuthenticationManager];
     XCTAssertTrue([authMan.delegate isKindOfClass:[LoginViewController class]], @"Should set delegate as LoginViewController");
 }
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-value"
 - (void)testLoginActionFailsWhenCredentialsAreInvalid {
     controller.emailField.text = @"invalidEmail";
     controller.passwordField.text = @"invalidPassword";
@@ -122,6 +123,30 @@ LoginViewController *controller;
     XCTAssertNoThrow([authMan verify], @"fetchSessionWithEmail should be called");
 }
 
+#pragma clang diagnostic pop
+
+- (void)testLoginActionStoresEmailAndPassword {
+    controller.emailField.text = @"testuser";
+    controller.passwordField.text = @"testpassword";
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"testuser" accessGroup:nil];
+    [controller didReceiveSession:nil message:nil];
+    NSString *email = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
+    NSString *password = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
+    XCTAssertEqualObjects(email, @"testuser", @"The email should be stored");
+    XCTAssertEqualObjects(password, @"testpassword", @"The password should be stored");
+}
+
+- (void)testLoginActionStoresSessionInNSUserDefaults {
+    Session *session = [[Session alloc] initWithEmail:@"testUser" userId:@"testUserId" tokenId:@"testTokenId"];
+    [controller didReceiveSession:session message:nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *email = [defaults objectForKey:@"email"];
+    NSString *testUserId = [defaults objectForKey:@"userId"];
+    NSString *testTokenId = [defaults objectForKey:@"tokenId"];
+    XCTAssertEqualObjects(email, @"testUser", @"The email should be stored");
+    XCTAssertEqualObjects(testUserId, @"testUserId", @"The userId should be stored");
+    XCTAssertEqualObjects(testTokenId, @"testTokenId", @"The tokenId should be stored");
+}
 
 - (void)testTouchingOutSideOfKeyboardHidesKeyboard{
     id mockView = [OCMockObject partialMockForObject:controller.view];

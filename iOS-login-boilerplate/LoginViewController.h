@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KeychainItemWrapper.h"
 #import "AuthenticationManager.h"
 #import "AuthenticationManagerDelegate.h"
 

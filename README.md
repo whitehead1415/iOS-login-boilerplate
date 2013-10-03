@@ -10,8 +10,6 @@ Reusable login/registration code
 
 ###TODO
 
-- Safely store credentials
-- stay logged in (recreate session behind the scenes)
 - Loading spinner/animation
 - Custom segues
 - Add to node js dummy server responses

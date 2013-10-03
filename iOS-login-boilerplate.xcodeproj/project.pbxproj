@@ -29,6 +29,8 @@
 		2406543017FBC7920082E06A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2406542E17FBC7920082E06A /* HomeViewController.m */; };
 		2406543317FBC9C30082E06A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2406543217FBC9C30082E06A /* SignUpViewController.m */; };
 		2406543417FBC9C30082E06A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2406543217FBC9C30082E06A /* SignUpViewController.m */; };
+		2433209817FCF837009F9E2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2433209717FCF837009F9E2A /* Security.framework */; };
+		2433209F17FCFFB5009F9E2A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433209E17FCFFB5009F9E2A /* KeychainItemWrapper.m */; };
 		24686B1517F28A2400400634 /* NetCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 24686B1417F28A2400400634 /* NetCommunicator.m */; };
 		24686B2217F296ED00400634 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24686B2117F296ED00400634 /* libOCMock.a */; };
 		24CAD31E17FB7AFD003D2A5D /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */; };
@@ -76,6 +78,9 @@
 		2406542E17FBC7920082E06A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		2406543117FBC9C30082E06A /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		2406543217FBC9C30082E06A /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		2433209717FCF837009F9E2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		2433209D17FCFFB5009F9E2A /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		2433209E17FCFFB5009F9E2A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		24686B1317F28A2400400634 /* NetCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetCommunicator.h; sourceTree = "<group>"; };
 		24686B1417F28A2400400634 /* NetCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetCommunicator.m; sourceTree = "<group>"; };
 		24686B1A17F296ED00400634 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2433209817FCF837009F9E2A /* Security.framework in Frameworks */,
 				2400027917F274F900097802 /* XCTest.framework in Frameworks */,
 				24686B2217F296ED00400634 /* libOCMock.a in Frameworks */,
 				2400027B17F274F900097802 /* UIKit.framework in Frameworks */,
@@ -145,6 +151,7 @@
 		2400025517F274F800097802 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2433209717FCF837009F9E2A /* Security.framework */,
 				2400025617F274F800097802 /* Foundation.framework */,
 				2400025817F274F800097802 /* CoreGraphics.framework */,
 				2400025A17F274F800097802 /* UIKit.framework */,
@@ -176,6 +183,8 @@
 				24686B1317F28A2400400634 /* NetCommunicator.h */,
 				24686B1417F28A2400400634 /* NetCommunicator.m */,
 				24F665BE17F7855F00405CF9 /* NetCommunicatorDelegate.h */,
+				2433209D17FCFFB5009F9E2A /* KeychainItemWrapper.h */,
+				2433209E17FCFFB5009F9E2A /* KeychainItemWrapper.m */,
 			);
 			path = "iOS-login-boilerplate";
 			sourceTree = "<group>";
@@ -360,6 +369,7 @@
 				2400026317F274F800097802 /* main.m in Sources */,
 				2406543317FBC9C30082E06A /* SignUpViewController.m in Sources */,
 				2406542F17FBC7920082E06A /* HomeViewController.m in Sources */,
+				2433209F17FCFFB5009F9E2A /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
