@@ -42,6 +42,7 @@
 		24482AA017FE210200E788D9 /* SignUpViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24482A9F17FE210200E788D9 /* SignUpViewControllerTests.m */; };
 		24686B1517F28A2400400634 /* NetCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 24686B1417F28A2400400634 /* NetCommunicator.m */; };
 		24686B2217F296ED00400634 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24686B2117F296ED00400634 /* libOCMock.a */; };
+		24A80B3A180508EC00B87350 /* ResetPasswordViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A80B39180508EC00B87350 /* ResetPasswordViewControllerTests.m */; };
 		24CAD31E17FB7AFD003D2A5D /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */; };
 		24CAD32117FB7B0C003D2A5D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD32017FB7B0C003D2A5D /* LoginViewController.m */; };
 		24EE4E1E1804E4970090FB21 /* logoutSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EE4E1D1804E4970090FB21 /* logoutSegue.m */; };
@@ -119,6 +120,7 @@
 		24686B1E17F296ED00400634 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		24686B1F17F296ED00400634 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		24686B2117F296ED00400634 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		24A80B39180508EC00B87350 /* ResetPasswordViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewControllerTests.m; sourceTree = "<group>"; };
 		24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 		24CAD31F17FB7B0C003D2A5D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		24CAD32017FB7B0C003D2A5D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				2400027F17F274F900097802 /* Supporting Files */,
 				24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */,
 				24482A9F17FE210200E788D9 /* SignUpViewControllerTests.m */,
+				24A80B39180508EC00B87350 /* ResetPasswordViewControllerTests.m */,
 				2400028E17F2754200097802 /* AuthenticationManagerTests.m */,
 				24F665B817F68D0B00405CF9 /* NetCommunicatorTests.m */,
 				2400029817F27DD600097802 /* SessionTests.m */,
@@ -466,6 +469,7 @@
 				24482AA017FE210200E788D9 /* SignUpViewControllerTests.m in Sources */,
 				24482A9E17FD242E00E788D9 /* AppDelegateTests.m in Sources */,
 				24F665B917F68D0B00405CF9 /* NetCommunicatorTests.m in Sources */,
+				24A80B3A180508EC00B87350 /* ResetPasswordViewControllerTests.m in Sources */,
 				24F665C917F7E47B00405CF9 /* MockAuthenticationManagerDelegate.m in Sources */,
 				2400029717F27DC900097802 /* Session.m in Sources */,
 			);

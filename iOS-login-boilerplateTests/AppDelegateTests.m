@@ -8,9 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "AppDelegate.h"
-#import "LoginViewController.h"
 #import "HomeViewController.h"
-#import "SliderMenuController.h"
+#import "LoginSliderMenuViewController.h"
 
 @interface AppDelegateTests : XCTestCase
 
@@ -45,18 +44,18 @@ AppDelegate *appDelegate;
     [super tearDown];
 }
 
-//- (void)testLoginViewwControllerIsRootViewController {
-//    XCTAssertTrue([appDelegate.window.rootViewController isKindOfClass:[SliderMenuController class]], @"Login View should be shown");
-//}
-//
-//- (void)testHomeViewControllerIsRootViewControllerIfCredentialsAreStored {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setObject:@"testEmail" forKey:@"email"];
-//    [defaults setObject:@"testUserId" forKey:@"userId"];
-//    [defaults setObject:@"testTokenId" forKey:@"tokenId"];
-//    [appDelegate application:nil didFinishLaunchingWithOptions:nil];
-//    XCTAssertTrue([appDelegate.window.rootViewController isKindOfClass:[HomeViewController class]], @"Home View should be shown");
-//}
+- (void)testLoginViewwControllerIsRootViewController {
+    XCTAssertTrue([appDelegate.window.rootViewController isKindOfClass:[LoginSliderMenuViewController class]], @"Login View should be shown");
+}
+
+- (void)testHomeViewControllerIsRootViewControllerIfCredentialsAreStored {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"testEmail" forKey:@"email"];
+    [defaults setObject:@"testUserId" forKey:@"userId"];
+    [defaults setObject:@"testTokenId" forKey:@"tokenId"];
+    [appDelegate application:nil didFinishLaunchingWithOptions:nil];
+    XCTAssertTrue([appDelegate.window.rootViewController isKindOfClass:[HomeViewController class]], @"Home View should be shown");
+}
 
 
 
