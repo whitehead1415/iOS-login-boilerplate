@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "HomeViewController.h"
 
 @interface LoginViewController ()
 
@@ -17,6 +18,7 @@
 @synthesize msgLabel;
 @synthesize emailField;
 @synthesize passwordField;
+@synthesize loginBtn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,10 +39,12 @@
         AuthenticationManager *authMan = [self initializeAuthenticationManager];
         authMan.currentSelector = @selector(sessionWasFetched:);
         [authMan fetchSessionWithEmail:emailField.text password:passwordField.text];
+        loginBtn.enabled = NO;
     }
 }
 
 - (void)didReceiveSession:(Session *)session message:(NSString *)message {
+    loginBtn.enabled = YES;
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:emailField.text accessGroup:nil];
     [keychainItem resetKeychainItem];
     [keychainItem setObject:emailField.text forKey:(__bridge id)(kSecAttrAccount)];
@@ -49,17 +53,19 @@
     [defaults setObject:session.userId forKey:@"userId"];
     [defaults setObject:session.tokenId forKey:@"tokenId"];
     [defaults setObject:session.email forKey:@"email"];
-    [self performSegueWithIdentifier:@"homeSegue" sender:self];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    HomeViewController *home = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    [self presentViewController:home animated:YES completion:NULL];
 }
 
 - (void)fetchingDataFailedWithError:(NSError *)error {
+    loginBtn.enabled = YES;
     msgLabel.text = [error.userInfo objectForKey:@"printableError"];
 }
 
 - (AuthenticationManager *)initializeAuthenticationManager {
     AuthenticationManager *authMan = [[AuthenticationManager alloc] init];
     authMan.delegate = self;
-
     return authMan;
 }
 

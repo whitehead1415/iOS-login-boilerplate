@@ -25,16 +25,27 @@
 		2400029617F27DC900097802 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 2400029517F27DC900097802 /* Session.m */; };
 		2400029717F27DC900097802 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 2400029517F27DC900097802 /* Session.m */; };
 		2400029917F27DD600097802 /* SessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2400029817F27DD600097802 /* SessionTests.m */; };
+		240269B818038361002A73C3 /* SliderMenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 240269AE18038361002A73C3 /* SliderMenuBar.m */; };
+		240269B918038361002A73C3 /* SliderMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240269B018038361002A73C3 /* SliderMenuController.m */; };
+		240269BA18038361002A73C3 /* SliderMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 240269B218038361002A73C3 /* SliderMenuItem.m */; };
+		240269BB18038361002A73C3 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240269B518038361002A73C3 /* SliderViewController.m */; };
+		240269BC18038361002A73C3 /* UIImage+ColorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 240269B718038361002A73C3 /* UIImage+ColorImage.m */; };
+		240269C71803878D002A73C3 /* Mathematic-Plus-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 240269C41803878D002A73C3 /* Mathematic-Plus-icon.png */; };
+		240269C81803878D002A73C3 /* System-Login-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 240269C51803878D002A73C3 /* System-Login-icon.png */; };
+		240269C91803878D002A73C3 /* Buzz-Private-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 240269C61803878D002A73C3 /* Buzz-Private-icon.png */; };
 		2406542F17FBC7920082E06A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2406542E17FBC7920082E06A /* HomeViewController.m */; };
-		2406543017FBC7920082E06A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2406542E17FBC7920082E06A /* HomeViewController.m */; };
 		2406543317FBC9C30082E06A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2406543217FBC9C30082E06A /* SignUpViewController.m */; };
-		2406543417FBC9C30082E06A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2406543217FBC9C30082E06A /* SignUpViewController.m */; };
+		242E66DB18034E8900B8722F /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242E66DA18034E8900B8722F /* ResetPasswordViewController.m */; };
 		2433209817FCF837009F9E2A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2433209717FCF837009F9E2A /* Security.framework */; };
 		2433209F17FCFFB5009F9E2A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2433209E17FCFFB5009F9E2A /* KeychainItemWrapper.m */; };
+		24482A9E17FD242E00E788D9 /* AppDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24482A9D17FD242E00E788D9 /* AppDelegateTests.m */; };
+		24482AA017FE210200E788D9 /* SignUpViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24482A9F17FE210200E788D9 /* SignUpViewControllerTests.m */; };
 		24686B1517F28A2400400634 /* NetCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 24686B1417F28A2400400634 /* NetCommunicator.m */; };
 		24686B2217F296ED00400634 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24686B2117F296ED00400634 /* libOCMock.a */; };
 		24CAD31E17FB7AFD003D2A5D /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */; };
 		24CAD32117FB7B0C003D2A5D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24CAD32017FB7B0C003D2A5D /* LoginViewController.m */; };
+		24EE4E1E1804E4970090FB21 /* logoutSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EE4E1D1804E4970090FB21 /* logoutSegue.m */; };
+		24EE4E211804EB0A0090FB21 /* LoginSliderMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EE4E201804EB0A0090FB21 /* LoginSliderMenuViewController.m */; };
 		24F665B917F68D0B00405CF9 /* NetCommunicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F665B817F68D0B00405CF9 /* NetCommunicatorTests.m */; };
 		24F665C117F78A5A00405CF9 /* MockNetCommunicatorDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F665C017F78A5A00405CF9 /* MockNetCommunicatorDelegate.m */; };
 		24F665C917F7E47B00405CF9 /* MockAuthenticationManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F665C817F7E47B00405CF9 /* MockAuthenticationManagerDelegate.m */; };
@@ -74,13 +85,31 @@
 		2400029417F27DC900097802 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		2400029517F27DC900097802 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		2400029817F27DD600097802 /* SessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionTests.m; sourceTree = "<group>"; };
+		240269AD18038361002A73C3 /* SliderMenuBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderMenuBar.h; sourceTree = "<group>"; };
+		240269AE18038361002A73C3 /* SliderMenuBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderMenuBar.m; sourceTree = "<group>"; };
+		240269AF18038361002A73C3 /* SliderMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderMenuController.h; sourceTree = "<group>"; };
+		240269B018038361002A73C3 /* SliderMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderMenuController.m; sourceTree = "<group>"; };
+		240269B118038361002A73C3 /* SliderMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderMenuItem.h; sourceTree = "<group>"; };
+		240269B218038361002A73C3 /* SliderMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderMenuItem.m; sourceTree = "<group>"; };
+		240269B318038361002A73C3 /* SliderMenuItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderMenuItemDelegate.h; sourceTree = "<group>"; };
+		240269B418038361002A73C3 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
+		240269B518038361002A73C3 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
+		240269B618038361002A73C3 /* UIImage+ColorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorImage.h"; sourceTree = "<group>"; };
+		240269B718038361002A73C3 /* UIImage+ColorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorImage.m"; sourceTree = "<group>"; };
+		240269C41803878D002A73C3 /* Mathematic-Plus-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mathematic-Plus-icon.png"; sourceTree = "<group>"; };
+		240269C51803878D002A73C3 /* System-Login-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "System-Login-icon.png"; sourceTree = "<group>"; };
+		240269C61803878D002A73C3 /* Buzz-Private-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buzz-Private-icon.png"; sourceTree = "<group>"; };
 		2406542D17FBC7920082E06A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		2406542E17FBC7920082E06A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		2406543117FBC9C30082E06A /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		2406543217FBC9C30082E06A /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		242E66D918034E8900B8722F /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordViewController.h; sourceTree = "<group>"; };
+		242E66DA18034E8900B8722F /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewController.m; sourceTree = "<group>"; };
 		2433209717FCF837009F9E2A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2433209D17FCFFB5009F9E2A /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		2433209E17FCFFB5009F9E2A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		24482A9D17FD242E00E788D9 /* AppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateTests.m; sourceTree = "<group>"; };
+		24482A9F17FE210200E788D9 /* SignUpViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewControllerTests.m; sourceTree = "<group>"; };
 		24686B1317F28A2400400634 /* NetCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetCommunicator.h; sourceTree = "<group>"; };
 		24686B1417F28A2400400634 /* NetCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetCommunicator.m; sourceTree = "<group>"; };
 		24686B1A17F296ED00400634 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -93,6 +122,10 @@
 		24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 		24CAD31F17FB7B0C003D2A5D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		24CAD32017FB7B0C003D2A5D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		24EE4E1C1804E4970090FB21 /* logoutSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logoutSegue.h; sourceTree = "<group>"; };
+		24EE4E1D1804E4970090FB21 /* logoutSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = logoutSegue.m; sourceTree = "<group>"; };
+		24EE4E1F1804EB0A0090FB21 /* LoginSliderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSliderMenuViewController.h; sourceTree = "<group>"; };
+		24EE4E201804EB0A0090FB21 /* LoginSliderMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSliderMenuViewController.m; sourceTree = "<group>"; };
 		24F665B817F68D0B00405CF9 /* NetCommunicatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetCommunicatorTests.m; sourceTree = "<group>"; };
 		24F665BE17F7855F00405CF9 /* NetCommunicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetCommunicatorDelegate.h; sourceTree = "<group>"; };
 		24F665BF17F78A5A00405CF9 /* MockNetCommunicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockNetCommunicatorDelegate.h; sourceTree = "<group>"; };
@@ -165,16 +198,22 @@
 			children = (
 				2400026517F274F800097802 /* AppDelegate.h */,
 				2400026617F274F800097802 /* AppDelegate.m */,
+				242E66CB18034CDA00B8722F /* SliderMenu */,
 				2400026817F274F800097802 /* Main_iPhone.storyboard */,
 				2400026B17F274F800097802 /* Main_iPad.storyboard */,
+				24EE4E1F1804EB0A0090FB21 /* LoginSliderMenuViewController.h */,
+				24EE4E201804EB0A0090FB21 /* LoginSliderMenuViewController.m */,
 				24CAD31F17FB7B0C003D2A5D /* LoginViewController.h */,
 				24CAD32017FB7B0C003D2A5D /* LoginViewController.m */,
 				2406543117FBC9C30082E06A /* SignUpViewController.h */,
 				2406543217FBC9C30082E06A /* SignUpViewController.m */,
+				242E66D918034E8900B8722F /* ResetPasswordViewController.h */,
+				242E66DA18034E8900B8722F /* ResetPasswordViewController.m */,
 				2406542D17FBC7920082E06A /* HomeViewController.h */,
 				2406542E17FBC7920082E06A /* HomeViewController.m */,
 				2400027117F274F900097802 /* Images.xcassets */,
 				2400025D17F274F800097802 /* Supporting Files */,
+				240269BD18038385002A73C3 /* Art */,
 				2400029017F2754F00097802 /* AuthenticationManager.h */,
 				2400029117F2754F00097802 /* AuthenticationManager.m */,
 				24F665C317F7E3EC00405CF9 /* AuthenticationManagerDelegate.h */,
@@ -185,6 +224,8 @@
 				24F665BE17F7855F00405CF9 /* NetCommunicatorDelegate.h */,
 				2433209D17FCFFB5009F9E2A /* KeychainItemWrapper.h */,
 				2433209E17FCFFB5009F9E2A /* KeychainItemWrapper.m */,
+				24EE4E1C1804E4970090FB21 /* logoutSegue.h */,
+				24EE4E1D1804E4970090FB21 /* logoutSegue.m */,
 			);
 			path = "iOS-login-boilerplate";
 			sourceTree = "<group>";
@@ -205,9 +246,11 @@
 			children = (
 				2400027F17F274F900097802 /* Supporting Files */,
 				24CAD31D17FB7AFD003D2A5D /* LoginViewControllerTests.m */,
+				24482A9F17FE210200E788D9 /* SignUpViewControllerTests.m */,
 				2400028E17F2754200097802 /* AuthenticationManagerTests.m */,
 				24F665B817F68D0B00405CF9 /* NetCommunicatorTests.m */,
 				2400029817F27DD600097802 /* SessionTests.m */,
+				24482A9D17FD242E00E788D9 /* AppDelegateTests.m */,
 				24F665BF17F78A5A00405CF9 /* MockNetCommunicatorDelegate.h */,
 				24F665C017F78A5A00405CF9 /* MockNetCommunicatorDelegate.m */,
 				24F665C717F7E47B00405CF9 /* MockAuthenticationManagerDelegate.h */,
@@ -223,6 +266,34 @@
 				2400028117F274F900097802 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		240269BD18038385002A73C3 /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				240269C41803878D002A73C3 /* Mathematic-Plus-icon.png */,
+				240269C51803878D002A73C3 /* System-Login-icon.png */,
+				240269C61803878D002A73C3 /* Buzz-Private-icon.png */,
+			);
+			name = Art;
+			sourceTree = "<group>";
+		};
+		242E66CB18034CDA00B8722F /* SliderMenu */ = {
+			isa = PBXGroup;
+			children = (
+				240269AD18038361002A73C3 /* SliderMenuBar.h */,
+				240269AE18038361002A73C3 /* SliderMenuBar.m */,
+				240269AF18038361002A73C3 /* SliderMenuController.h */,
+				240269B018038361002A73C3 /* SliderMenuController.m */,
+				240269B118038361002A73C3 /* SliderMenuItem.h */,
+				240269B218038361002A73C3 /* SliderMenuItem.m */,
+				240269B318038361002A73C3 /* SliderMenuItemDelegate.h */,
+				240269B418038361002A73C3 /* SliderViewController.h */,
+				240269B518038361002A73C3 /* SliderViewController.m */,
+				240269B618038361002A73C3 /* UIImage+ColorImage.h */,
+				240269B718038361002A73C3 /* UIImage+ColorImage.m */,
+			);
+			name = SliderMenu;
 			sourceTree = "<group>";
 		};
 		24686B1717F296ED00400634 /* usr */ = {
@@ -339,10 +410,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240269C91803878D002A73C3 /* Buzz-Private-icon.png in Resources */,
 				2400026D17F274F800097802 /* Main_iPad.storyboard in Resources */,
+				240269C81803878D002A73C3 /* System-Login-icon.png in Resources */,
 				2400027217F274F900097802 /* Images.xcassets in Resources */,
 				2400026A17F274F800097802 /* Main_iPhone.storyboard in Resources */,
 				2400026117F274F800097802 /* InfoPlist.strings in Resources */,
+				240269C71803878D002A73C3 /* Mathematic-Plus-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,11 +435,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240269BC18038361002A73C3 /* UIImage+ColorImage.m in Sources */,
 				24686B1517F28A2400400634 /* NetCommunicator.m in Sources */,
+				240269BB18038361002A73C3 /* SliderViewController.m in Sources */,
 				2400029617F27DC900097802 /* Session.m in Sources */,
+				240269BA18038361002A73C3 /* SliderMenuItem.m in Sources */,
+				24EE4E211804EB0A0090FB21 /* LoginSliderMenuViewController.m in Sources */,
 				2400029217F2754F00097802 /* AuthenticationManager.m in Sources */,
+				240269B818038361002A73C3 /* SliderMenuBar.m in Sources */,
 				24CAD32117FB7B0C003D2A5D /* LoginViewController.m in Sources */,
+				240269B918038361002A73C3 /* SliderMenuController.m in Sources */,
 				2400026717F274F800097802 /* AppDelegate.m in Sources */,
+				242E66DB18034E8900B8722F /* ResetPasswordViewController.m in Sources */,
+				24EE4E1E1804E4970090FB21 /* logoutSegue.m in Sources */,
 				2400026317F274F800097802 /* main.m in Sources */,
 				2406543317FBC9C30082E06A /* SignUpViewController.m in Sources */,
 				2406542F17FBC7920082E06A /* HomeViewController.m in Sources */,
@@ -381,8 +463,8 @@
 				24CAD31E17FB7AFD003D2A5D /* LoginViewControllerTests.m in Sources */,
 				24F665C117F78A5A00405CF9 /* MockNetCommunicatorDelegate.m in Sources */,
 				2400028F17F2754200097802 /* AuthenticationManagerTests.m in Sources */,
-				2406543017FBC7920082E06A /* HomeViewController.m in Sources */,
-				2406543417FBC9C30082E06A /* SignUpViewController.m in Sources */,
+				24482AA017FE210200E788D9 /* SignUpViewControllerTests.m in Sources */,
+				24482A9E17FD242E00E788D9 /* AppDelegateTests.m in Sources */,
 				24F665B917F68D0B00405CF9 /* NetCommunicatorTests.m in Sources */,
 				24F665C917F7E47B00405CF9 /* MockAuthenticationManagerDelegate.m in Sources */,
 				2400029717F27DC900097802 /* Session.m in Sources */,

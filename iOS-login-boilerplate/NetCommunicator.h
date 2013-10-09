@@ -15,8 +15,10 @@
 
 @property (nonatomic, retain) id delegate;
 
-- (void)fetchDataFromURL:(NSURL *)url httpMethod:(NSString *)httpMethod;
-- (NSURLConnection *)newAsynchronousRequest:(NSURLRequest *)request;
+- (void)fetchDataFromURL:(NSURL *)url httpMethod:(NSString *)httpMethod params:(NSData *)params;
+- (NSURLConnection *)newAsynchronousConnection:(NSURLRequest *)request;
+- (NSMutableURLRequest *)newAsynchronousRequestWithURL:(NSURL *)url;
+
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;

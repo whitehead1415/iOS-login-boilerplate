@@ -7,6 +7,11 @@
 //
 
 #import "HomeViewController.h"
+#import "KeychainItemWrapper.h"
+#import "SliderMenuController.h"
+#import "LoginViewController.h"
+#import "SignUpViewController.h"
+#import "ResetPasswordViewController.h"
 
 @interface HomeViewController ()
 
@@ -33,6 +38,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)logout:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *email = [defaults objectForKey:@"email"];
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:email accessGroup:nil];
+    [keychainItem resetKeychainItem];
+    [defaults removeObjectForKey: @"userId"];
+    [defaults removeObjectForKey: @"tokenId"];
+    [defaults removeObjectForKey: @"email"];
+    
+    
+    [self performSegueWithIdentifier:@"logoutSegue" sender:self];
 }
 
 @end

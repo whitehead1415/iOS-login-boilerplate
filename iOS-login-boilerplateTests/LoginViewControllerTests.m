@@ -32,16 +32,14 @@ LoginViewController *controller;
     [super tearDown];
 }
 
+#pragma mark - Outlet Tests
+
 - (void)testMessageLabelIsConnected {
     XCTAssertNotNil(controller.msgLabel, @"The login label should be connected");
 }
 
 - (void)testLoginBtnIsConnected {
     XCTAssertNotNil(controller.loginBtn, @"LoginBtn should be present");
-}
-
-- (void)testSignUpBtnIsConnected {
-    XCTAssertNotNil(controller.signUpBtn, @"LoginBtn should be present");
 }
 
 - (void)testEmailFieldIsConnected {
@@ -54,6 +52,27 @@ LoginViewController *controller;
 
 - (void)testMessageLabelIsEmptyString {
     XCTAssertEqualObjects(controller.msgLabel.text, @"", @"The label should be blank");
+}
+
+#pragma mark - Login Action Tests
+- (void)testLoginBtnActionDisablesLoginBtn {
+    controller.emailField.text = @"foo";
+    controller.passwordField.text = @"bar";
+    [controller login:nil];
+    XCTAssertFalse(controller.loginBtn.isEnabled, @"Should be disabled");
+}
+
+- (void)testLoginBtnIsReEnabledWhenDidRecieveSession {
+    controller.loginBtn.enabled = NO;
+    [controller didReceiveSession:nil message:nil];
+    XCTAssertTrue(controller.loginBtn.isEnabled, @"Login button should be enabled");
+}
+
+- (void)testLoginBtnIsReEnabledWhenFetchingDataFailedWithError {
+    controller.loginBtn.enabled = NO;
+    [controller fetchingDataFailedWithError:nil];
+    XCTAssertTrue(controller.loginBtn.isEnabled, @"Login button should be enabled");
+
 }
 
 - (void)testLoginBtnAction {
@@ -147,6 +166,8 @@ LoginViewController *controller;
     XCTAssertEqualObjects(testUserId, @"testUserId", @"The userId should be stored");
     XCTAssertEqualObjects(testTokenId, @"testTokenId", @"The tokenId should be stored");
 }
+
+#pragma mark - Keyboard Tests
 
 - (void)testTouchingOutSideOfKeyboardHidesKeyboard{
     id mockView = [OCMockObject partialMockForObject:controller.view];

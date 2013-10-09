@@ -43,9 +43,9 @@ MockNetCommunicatorDelegate *delegate;
     
     NSData *responseData = [@"testString" dataUsingEncoding:NSUTF8StringEncoding];
     id partialMock = [OCMockObject partialMockForObject:netCommunicator];
-    [[[partialMock stub] andReturn:dummyUrlConnection] newAsynchronousRequest:[OCMArg any]];
+    [[[partialMock stub] andReturn:dummyUrlConnection] newAsynchronousConnection:[OCMArg any]];
     netCommunicator.delegate = delegate;
-    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"] httpMethod:@"POST"];
+    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"] httpMethod:@"POST" params:nil];
     
     int statusCode = 200;
     id responseMock = [OCMockObject mockForClass:[NSHTTPURLResponse class]];
@@ -62,18 +62,36 @@ MockNetCommunicatorDelegate *delegate;
                                            initWithRequest:[NSURLRequest requestWithURL:
                                                             [NSURL URLWithString:@""]] delegate:nil startImmediately:NO];
     id partialMock = [OCMockObject partialMockForObject:netCommunicator];
-    [[[partialMock stub] andReturn:dummyUrlConnection] newAsynchronousRequest:[OCMArg any]];
+    [[[partialMock stub] andReturn:dummyUrlConnection] newAsynchronousConnection:[OCMArg any]];
     netCommunicator.delegate = delegate;
-    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"] httpMethod:@"POST"];
+    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"] httpMethod:@"POST" params:nil];
     NSError *fakeError = [[NSError alloc] initWithDomain:@"fakeDomain" code:400 userInfo:nil];
     [netCommunicator connection:dummyUrlConnection didFailWithError:fakeError];
     XCTAssertEqualObjects(delegate.error, fakeError, @"The error should pass through to the netCommunicatorDelegate");
 }
 
-- (void)testNewAsynchronousRequestReturnsNSURLConnection {
+- (void)testNewAsynchronousConnectionReturnsNSURLConnection {
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@""]];
-    NSURLConnection *connection = [netCommunicator newAsynchronousRequest:request];
+    NSURLConnection *connection = [netCommunicator newAsynchronousConnection:request];
     XCTAssertNotNil(connection, @"The connection should be non nil");
+}
+
+- (void)testNewAsynchronousRequestReturnsNSMutableURLRequest {
+    NSURL *url = [NSURL URLWithString:@"anyURL"];
+    NSMutableURLRequest *request = [netCommunicator newAsynchronousRequestWithURL:url];
+    XCTAssertNotNil(request, @"The connection should be non nil");
+}
+
+- (void)testParametersGetSet {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:@""]];
+    id dummyRequest = [OCMockObject partialMockForObject:request];
+    id partialMock = [OCMockObject partialMockForObject:netCommunicator];
+    [[[partialMock stub] andReturn:dummyRequest] newAsynchronousRequestWithURL:[OCMArg any]];
+    NSString *paramsString = @"foo=bar&test=test";
+    NSData *paramsData = [NSData dataWithBytes:[paramsString UTF8String] length:paramsString.length];
+    [[dummyRequest expect] setHTTPBody:paramsData];
+    [netCommunicator fetchDataFromURL:[NSURL URLWithString:@"anyURL"] httpMethod:@"POST" params:paramsData];
+    XCTAssertNoThrow([dummyRequest verify], @"should set parameters as body");
 }
 
 @end

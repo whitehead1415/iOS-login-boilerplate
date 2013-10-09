@@ -21,6 +21,7 @@
 
 
 - (void)fetchSessionWithEmail:(NSString *)email password:(NSString *)password;
+- (void)createNewUserWithName:(NSString *)name email:(NSString *)email password:(NSString *)password;
 - (void)sessionWasFetched:(NSData *)data;
 - (NetCommunicator *)netCommunicatorCreator;
 

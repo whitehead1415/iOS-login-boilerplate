@@ -53,10 +53,24 @@ MockAuthenticationManagerDelegate *delegate;
     id netCommunicator = [OCMockObject mockForClass:[NetCommunicator class]];
     authMan.currentSelector = @selector(sessionWasFetched:);
     [[[mockAuthenticationManager stub] andReturn:netCommunicator] netCommunicatorCreator];
-    [[netCommunicator expect] fetchDataFromURL:[OCMArg any] httpMethod:[OCMArg any]];
+    [[netCommunicator expect] fetchDataFromURL:[OCMArg any] httpMethod:[OCMArg any] params:[OCMArg any]];
     [mockAuthenticationManager fetchingDataSucceeded:responseData];
     [authMan fetchSessionWithEmail:@"testEmail" password:@"testPassword"];
     XCTAssertNoThrow([netCommunicator verify], @"fetchDataFromURL should be called");
+}
+
+- (void)testCreateNewUserWithNameEmailAndPassword {
+    NSString *responseString = @"{\"token\":{\"id\":\"testTokenId\",\"email\":\"testEmail\",\"userId\":\"testUserId\"}}";
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    id mockAuthenticationManager = [OCMockObject partialMockForObject:authMan];
+    id netCommunicator = [OCMockObject mockForClass:[NetCommunicator class]];
+    authMan.currentSelector = @selector(sessionWasFetched:);
+    [[[mockAuthenticationManager stub] andReturn:netCommunicator] netCommunicatorCreator];
+    [[netCommunicator expect] fetchDataFromURL:[OCMArg any] httpMethod:[OCMArg any] params:[OCMArg any]];
+    [mockAuthenticationManager fetchingDataSucceeded:responseData];
+    [authMan createNewUserWithName:@"foo" email:@"bar" password:@"baz"];
+    XCTAssertNoThrow([netCommunicator verify], @"fetchDataFromURL should be called");
+
 }
 
 - (void)testCorrectMethodGetsCalledFromNetCommunicatorDelegate {

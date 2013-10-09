@@ -14,15 +14,21 @@
 
 @synthesize delegate;
 
-- (NSURLConnection *)newAsynchronousRequest:(NSURLRequest *)request{
+- (NSURLConnection *)newAsynchronousConnection:(NSURLRequest *)request{
     return [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (void)fetchDataFromURL:(NSURL *)url httpMethod:(NSString *)httpMethod{
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+- (NSMutableURLRequest *)newAsynchronousRequestWithURL:(NSURL *)url {
+    return [NSMutableURLRequest requestWithURL:url];
+}
+
+- (void)fetchDataFromURL:(NSURL *)url httpMethod:(NSString *)httpMethod params:(NSData *)params{
+    NSMutableURLRequest *request = [self newAsynchronousRequestWithURL:url];
     [request setHTTPMethod:httpMethod];
+    [request setHTTPBody:params];
+    [request setTimeoutInterval:15.0];
     receivedData = [NSMutableData alloc];
-    NSURLConnection *connection = [self newAsynchronousRequest:request];
+    NSURLConnection *connection = [self newAsynchronousConnection:request];
     [connection start];
 }
 

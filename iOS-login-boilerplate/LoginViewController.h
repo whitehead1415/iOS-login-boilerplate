@@ -6,18 +6,17 @@
 //  Copyright (c) 2013 michael whitehead. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SliderViewController.h"
 #import "KeychainItemWrapper.h"
 #import "AuthenticationManager.h"
 #import "AuthenticationManagerDelegate.h"
 
-@interface LoginViewController : UIViewController <AuthenticationManagerDelegate, UITextFieldDelegate>
+@interface LoginViewController : SliderViewController <AuthenticationManagerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
 
 - (IBAction)login:(id)sender;
 - (AuthenticationManager *)initializeAuthenticationManager;

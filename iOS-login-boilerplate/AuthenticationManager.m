@@ -12,6 +12,7 @@
 
 #define SERVER_URL @"http://localhost:3000/v1"
 #define LOGIN_ROUTE @"sessions"
+#define USERS_ROUTE @"users"
 //figure out how to send post get or update with nsurl
 
 @implementation AuthenticationManager
@@ -26,10 +27,17 @@
     return netCommunicator;
 }
 
+- (void)createNewUserWithName:(NSString *)name email:(NSString *)email password:(NSString *)password {
+    NSURL *fetchURL = [NSURL URLWithString:
+                       [NSString stringWithFormat:@"%@/%@?name=%@&email=%@&password=%@",SERVER_URL,USERS_ROUTE,name, email,password]];
+    [[self netCommunicatorCreator] fetchDataFromURL:fetchURL httpMethod:@"POST" params:nil];
+
+}
+
 - (void)fetchSessionWithEmail:(NSString *)email password:(NSString *)password {
     NSURL *fetchURL = [NSURL URLWithString:
                        [NSString stringWithFormat:@"%@/%@?email=%@&password=%@",SERVER_URL,LOGIN_ROUTE,email,password]];
-    [[self netCommunicatorCreator] fetchDataFromURL:fetchURL httpMethod:@"POST"];
+    [[self netCommunicatorCreator] fetchDataFromURL:fetchURL httpMethod:@"POST" params:nil];
 }
 
 - (void)fetchingDataFailed:(NSError *)error {
