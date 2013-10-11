@@ -21,5 +21,4 @@
     _error = error;
 }
 
-
 @end

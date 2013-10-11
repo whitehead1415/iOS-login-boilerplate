@@ -10,6 +10,11 @@
 #import "Session.h"
 #import "NetCommunicator.h"
 #import "NetCommunicatorDelegate.h"
+#define SERVER_URL @"http://localhost:3000/v1"
+#define LOGIN_ROUTE @"sessions"
+#define USERS_ROUTE @"users"
+#define PASSWORD_ROUTE @"users/password"
+
 
 @interface AuthenticationManager : NSObject <NetCommunicatorDelegate>
 
@@ -24,5 +29,8 @@
 - (void)createNewUserWithName:(NSString *)name email:(NSString *)email password:(NSString *)password;
 - (void)sessionWasFetched:(NSData *)data;
 - (NetCommunicator *)netCommunicatorCreator;
+- (void)getResetCodeWithEmail:(NSString *)email;
+- (void)resetCodeWasSent:(NSData *)data;
+- (void)resetPasswordWithCode:(NSString *)code email:(NSString *)email password:(NSString *)password;
 
 @end

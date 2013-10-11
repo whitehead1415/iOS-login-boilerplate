@@ -23,4 +23,8 @@
     receivedError = error;
 }
 
+- (void)resetCodeSuccessMessageWasReceived:(NSString *)msg {
+    receivedMessage = msg;
+}
+
 @end

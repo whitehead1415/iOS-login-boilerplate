@@ -8,6 +8,8 @@
 
 #import "SliderViewController.h"
 #import "AuthenticationManagerDelegate.h"
+#import "KeychainItemWrapper.h"
+#import "AuthenticationManager.h"
 
 @interface ResetPasswordViewController : SliderViewController <AuthenticationManagerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -21,4 +23,6 @@
 - (IBAction)validate:(UIButton *)sender;
 - (void)getResetCode;
 - (void)resetPassword;
+- (AuthenticationManager *)initializeAuthenticationManager;
+
 @end

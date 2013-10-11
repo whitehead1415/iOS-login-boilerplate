@@ -10,9 +10,6 @@
 #import "NetCommunicator.h"
 #import "AuthenticationManagerDelegate.h"
 
-#define SERVER_URL @"http://localhost:3000/v1"
-#define LOGIN_ROUTE @"sessions"
-#define USERS_ROUTE @"users"
 //figure out how to send post get or update with nsurl
 
 @implementation AuthenticationManager
@@ -38,6 +35,19 @@
     NSURL *fetchURL = [NSURL URLWithString:
                        [NSString stringWithFormat:@"%@/%@?email=%@&password=%@",SERVER_URL,LOGIN_ROUTE,email,password]];
     [[self netCommunicatorCreator] fetchDataFromURL:fetchURL httpMethod:@"POST" params:nil];
+}
+
+- (void)getResetCodeWithEmail:(NSString *)email {
+    NSURL *fetchURL = [NSURL URLWithString:
+                       [NSString stringWithFormat:@"%@/%@?email=%@", SERVER_URL, PASSWORD_ROUTE, email]];
+    [[self netCommunicatorCreator] fetchDataFromURL:fetchURL httpMethod:@"GET" params:nil];
+}
+
+
+- (void)resetPasswordWithCode:(NSString *)code email:(NSString *)email password:(NSString *)password {
+    NSURL *fetchURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?code=%@&email=%@&password=%@",SERVER_URL, PASSWORD_ROUTE, code, email, password]];
+    [[self netCommunicatorCreator]fetchDataFromURL:fetchURL httpMethod:@"PUT" params:nil];
+    
 }
 
 - (void)fetchingDataFailed:(NSError *)error {
@@ -75,6 +85,26 @@
             NSString *msg = [deserialisedSession objectForKey:@"msg"];
             Session *session = [[Session alloc] initWithEmail:email userId:userId tokenId:tokenId];
             [delegate didReceiveSession:session message:msg];
+        }
+    }
+}
+
+- (void)resetCodeWasSent:(NSData *)data {
+    NSError *error = nil;
+    NSDictionary *deserialisedMsg = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    if (error) {
+        NSDictionary *newUserInfo = [[NSDictionary alloc] initWithObjectsAndKeys:@"Unable to parse server response. Please do something!", @"printableError", nil];
+        NSError *newError = [[NSError alloc] initWithDomain:@"com.custom.domain" code:500 userInfo:newUserInfo];
+        [delegate fetchingDataFailedWithError:newError];
+    } else {
+        NSString *error = [deserialisedMsg objectForKey:@"error"];
+        if (error) {
+            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:error, @"printableError", nil];
+            NSError *serverError = [[NSError alloc] initWithDomain:@"com.custom.domain" code:500 userInfo:userInfo];
+            [delegate fetchingDataFailedWithError:serverError];
+        }else {
+            NSString *msg = [deserialisedMsg objectForKey:@"msg"];
+            [delegate resetCodeSuccessMessageWasReceived:msg];
         }
     }
 }

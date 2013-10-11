@@ -7,6 +7,7 @@
 //
 
 #import "ResetPasswordViewController.h"
+#import "HomeViewController.h"
 
 @interface ResetPasswordViewController ()
 
@@ -77,11 +78,78 @@
 }
 
 - (void)getResetCode {
-    
+    AuthenticationManager *authMan = [self initializeAuthenticationManager];
+    authMan.currentSelector = @selector(resetCodeWasSent:);
+    [authMan getResetCodeWithEmail:emailField.text];
 }
 
 - (void)resetPassword {
+    AuthenticationManager *authMan = [self initializeAuthenticationManager];
+    authMan.currentSelector = @selector(sessionWasFetched:);
+    [authMan resetPasswordWithCode:codeField.text email:emailField.text password:passwordField.text];
+}
+
+- (void)didReceiveSession:(Session *)session message:(NSString *)message {
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:emailField.text accessGroup:nil];
+    [keychainItem resetKeychainItem];
+    [keychainItem setObject:emailField.text forKey:(__bridge id)(kSecAttrAccount)];
+    [keychainItem setObject:passwordField.text forKey:(__bridge id)(kSecValueData)];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:session.userId forKey:@"userId"];
+    [defaults setObject:session.tokenId forKey:@"tokenId"];
+    [defaults setObject:session.email forKey:@"email"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    HomeViewController *home = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+    [self presentViewController:home animated:YES completion:NULL];
+}
+
+- (void)resetCodeSuccessMessageWasReceived:(NSString *)msg {
+    msgLabel.text = msg;
+}
+
+- (void)fetchingDataFailedWithError:(NSError *)error {
+    msgLabel.text = [error.userInfo objectForKey:@"printableError"];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([self textFieldsAreFilled]) {
+        [self validate:nil];
+    }else {
+        [self setNextTextField:textField];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldsAreFilled {
+    if ((emailField.text.length < 1 || codeField.text.length < 1 || passwordField.text.length < 1) && !infoSwitch.isOn) {
+        return NO;
+    }else if(infoSwitch.isOn && emailField.text.length < 1) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)setNextTextField:(UITextField *)textField {
+    if (!infoSwitch.isOn) {
+        if (textField == emailField) {
+            [codeField becomeFirstResponder];
+        }else if (textField == codeField) {
+            [passwordField becomeFirstResponder];
+        }else {
+            [emailField becomeFirstResponder];
+        }
+    }
     
+}
+
+- (AuthenticationManager *)initializeAuthenticationManager {
+    AuthenticationManager *authMan = [[AuthenticationManager alloc] init];
+    authMan.delegate = self;
+    return authMan;
 }
 
 @end

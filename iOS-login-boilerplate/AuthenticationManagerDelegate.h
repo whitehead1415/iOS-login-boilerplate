@@ -13,4 +13,5 @@
 
 - (void) didReceiveSession:(Session *)session message:(NSString *)message;
 - (void) fetchingDataFailedWithError:(NSError *)error;
+- (void) resetCodeSuccessMessageWasReceived:(NSString *)msg;
 @end

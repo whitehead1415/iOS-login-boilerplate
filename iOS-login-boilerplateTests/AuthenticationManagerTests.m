@@ -70,7 +70,27 @@ MockAuthenticationManagerDelegate *delegate;
     [mockAuthenticationManager fetchingDataSucceeded:responseData];
     [authMan createNewUserWithName:@"foo" email:@"bar" password:@"baz"];
     XCTAssertNoThrow([netCommunicator verify], @"fetchDataFromURL should be called");
+}
 
+- (void)testGetResetCodeWithEmailCallsFetchDataFromURL {
+    id netCommunicator = [OCMockObject mockForClass:[NetCommunicator class]];
+    id mockAuthMan = [OCMockObject partialMockForObject:authMan];
+    [[[mockAuthMan stub] andReturn:netCommunicator] netCommunicatorCreator];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?email=%@", SERVER_URL, PASSWORD_ROUTE, @"foobar"]];
+    [[netCommunicator expect] fetchDataFromURL:url httpMethod:@"GET" params:nil];
+    [authMan getResetCodeWithEmail:@"foobar"];
+    XCTAssertNoThrow([netCommunicator verify], @"getResetCodeWithEmail should call fetchDataFromURL");
+}
+
+- (void)testPasswordWithCodeCallsFetchDataFromURL {
+    id netCommunicator = [OCMockObject mockForClass:[NetCommunicator class]];
+    id mockAuthMan = [OCMockObject partialMockForObject:authMan];
+    [[[mockAuthMan stub] andReturn:netCommunicator] netCommunicatorCreator];
+    NSURL *url = [NSURL URLWithString:
+                  [NSString stringWithFormat:@"%@/%@?code=%@&email=%@&password=%@", SERVER_URL, PASSWORD_ROUTE, @"foo", @"bar", @"baz"]];
+    [[netCommunicator expect] fetchDataFromURL:url httpMethod:@"PUT" params:nil];
+    [authMan resetPasswordWithCode:@"foo" email:@"bar" password:@"baz"];
+    XCTAssertNoThrow([netCommunicator verify], @"resetWithCode should call fetchDataFromURL");
 }
 
 - (void)testCorrectMethodGetsCalledFromNetCommunicatorDelegate {
@@ -128,6 +148,33 @@ MockAuthenticationManagerDelegate *delegate;
     NSString *printableError = [delegate.receivedError.userInfo objectForKey:@"printableError"];
     XCTAssertEqualObjects(@"failure", printableError, @"The error should be the same as server error");
 }
+
+- (void)testResetCodeWasSentGivesErrorBecauseOfInvalidJSON {
+    NSString *jsonString = @"malformedJSON";
+    NSData *jsonData = [NSData dataWithBytes:[jsonString UTF8String] length:jsonString.length];
+    authMan.delegate = delegate;
+    [authMan resetCodeWasSent:jsonData];
+    NSString *error = [delegate.receivedError.userInfo objectForKey:@"printableError"];
+    XCTAssertEqualObjects(@"Unable to parse server response. Please do something!", error, @"the fetchingDatFailedWithError should be called when json is malformed");
+}
+
+- (void)testResetCodeWasSentGivesErrorBecauseOfErrorFromServer {
+    NSString *jsonString = @"{\"error\":\"failure\"}";
+    NSData *jsonData = [NSData dataWithBytes:[jsonString UTF8String] length:jsonString.length];
+    authMan.delegate = delegate;
+    [authMan resetCodeWasSent:jsonData];
+    NSString *error = [delegate.receivedError.userInfo objectForKey:@"printableError"];
+    XCTAssertEqualObjects(@"failure", error, @"the fetchingDatFailedWithError should be called when server sends error");
+}
+
+- (void)testResetCodeWasSentCallsDelegateResetCodeSuccessMessageWasRecieved{
+    NSString *jsonString = @"{\"msg\":\"success\"}";
+    NSData *jsonData = [NSData dataWithBytes:[jsonString UTF8String] length:jsonString.length];
+    authMan.delegate = delegate;
+    [authMan resetCodeWasSent:jsonData];
+    XCTAssertEqualObjects(delegate.receivedMessage, @"success", @"the resetCodeSuccessMessageWasReceived should be called when server sends message");
+}
+
 
 
 @end
